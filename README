@@ -1,3 +1,29 @@
 Not Compilling
+Working on Cascade Pole Filter Section 
 
-//Wroking on Cascade Pole Filter Section 
+//TODO
+1.Generator Section 
+Sine ,Triangle  , SawTooth, Waveforms,...
+LFOS
+
+2.Analysis
+Short FFT 
+
+3.Envelopes
+Linear ADSR 
+Exponential ADSR
+
+4.Filter
+Custom Filter 
+Comb Filter (+)
+Comb Filter (-)
+Moog Filter
+
+5.FileSound 
+AIFF Sound Reader/Writer
+Sampler 
+
+6.Others
+MIDI Processing Class
+OSC Server/Client class
+ 
