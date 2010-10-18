@@ -6,7 +6,7 @@ File: BartletWindow.cpp
 reation date: 2010/10/18
 Author: Hélder Vasconcelos 
 Description: 
-Copyright (c) <year> <copyright holders>
+Copyright (c) 2010 Hélder Vasconcelos
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
