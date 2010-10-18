@@ -1,11 +1,13 @@
-/*
- *  BartletWindow.h
- *  PU_Library
- *
- *  Created by Helder Vasconcelos on 10/10/15.
- *  Copyright 2010 AuGear. All rights reserved.
- *
- */
+/*********************************************************
+//
+// Module: Audio DSP Library
+// Version: V0.1
+// File: BartletWindow.h
+// Creation date: 2010/10/18
+// Author: Hélder Vasconcelos 
+// Description: 
+//
+*******************************************************************/
 
 #ifndef BARTLETWINDOW_H
 #define BARTLETWINDOW_H	
