@@ -5,7 +5,7 @@ Version: V0.0.1
 File: main.cpp
 Creation date: 2010/08/10
 Author: Hélder Vasconcelos helder.vasc@e-2points.com 
-Description: 
+Description: Class Tester
 
 
 Copyright (c) 2010 Hélder Vasconcelos
