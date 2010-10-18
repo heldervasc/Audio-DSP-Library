@@ -1,5 +1,13 @@
 /************************************************************************
 
+Product: Portable Audio Dsp Library 
+Version: V0.0.1
+File: main.cpp
+Creation date: 2010/08/10
+Author: Hélder Vasconcelos helder.vasc@e-2points.com 
+Description: 
+
+
 Copyright (c) 2010 Hélder Vasconcelos
 
     This library is free software; you can redistribute it and/or modify 
