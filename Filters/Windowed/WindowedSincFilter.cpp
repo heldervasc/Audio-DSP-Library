@@ -28,7 +28,8 @@
 
 #include "WindowedSincFilter.h"
 
-
+#include <stdio.h>
+#include <stdlib.h>
 
 WindowedSincFilter::~WindowedSincFilter(){
 	

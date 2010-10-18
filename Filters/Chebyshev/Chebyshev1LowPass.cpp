@@ -30,16 +30,14 @@
 
 
 
-void ChebyShev1LowPass::Setup( Float32 cutoffFreq, Float32 rippleDb )
-{
-	Chebyshev1Filter::Setup( cutoffFreq, rippleDb );
-	// move peak of ripple down to 0dB
-	if( !(NPoles&1) )
-		CascadeStages::Normalize( pow( 10, -rippleDb/20.0 ) );
+void ChebyShev1LowPass::SetupAs( Float32 NormCutoffFreq ){
+
+	this->cutoffFreq=NormCutoffFreq;
+
+	Setup();
+
+
 }
 
 
-Float32 ChebyShev1LowPass::PassbandHint( void )
-{
-	return 0;
-}
+

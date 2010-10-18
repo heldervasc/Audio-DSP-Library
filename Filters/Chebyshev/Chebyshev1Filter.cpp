@@ -29,60 +29,33 @@
 #include "Chebyshev1Filter.h"
 
 
-
-void Chebyshev1Filter::Setup( Float32 cutoffFreq, Float32 rippleDb )
-{
-	m_n=nPoles;
-	m_wc=2*M_PI*cutoffFreq;
-	SetupCommon( rippleDb );
-}
+void Chebyshev1Filter::Design(){
 
 
-void Chebyshev1Filter::SetupCommon( Float32 rippleDb )
-{
-	m_eps=::sqrt( 1/::exp( -rippleDb*0.1*kLn10 )-1 );
-	Prepare();
-	// This moves the bottom of the ripples to 0dB gain
-	//CascadeStages::Normalize( pow( 10, rippleDb/20.0 ) );
-}
 
-
-int    Chebyshev1Filter::CountPoles( void )
-{
-	return nPoles;
-}
-
-
-int Chebyshev1Filter::CountZeroes( void )
-{
-	return nPoles;
-}
-
-
-Complex Chebyshev1Filter::GetPole( int i )
-{
-	return BilinearTransform( GetSPole( i, m_wc ) )*m_sgn;
-}
-
-
-Complex Chebyshev1Filter::GetZero( int i )
-{
-	return Complex( -m_sgn );
-}
-
-
-Complex Chebyshev1Filter::GetSPole( int i, Float32 wc )
-{
-	int n        = m_n;
-	Float32 ni    = 1.0/n;
-	Float32 alpha    = 1/m_eps+::sqrt(1+1/(m_eps*m_eps));
-	Float32 pn    = pow( alpha,  ni );
-	Float32 nn    = pow( alpha, -ni );
-	Float32 a        = 0.5*( pn - nn );
-	Float32 b        = 0.5*( pn + nn );
-	Float32 theta = M_PI_2 + (2*i+1) * M_PI/(2*n);
+	//int n=spec.;
 	
-	Complex c(0);
-	c.SetValueFromPolar(tan( 0.5*(m_sgn==-1?(M_PI-wc):wc) ), theta);
-	return Complex( a*c.re, b*c.img );
+	//SetPoles( n );
+	//SetZeros( n );
+	
+	
+	Float32 eps=sqrt( 1/exp( -this->passRippleDb*0.1*kLn10 )-1 );
+	Float32 v0=asinh(1/eps)/this->NOrder;
+	
+	for( int i=0;i<this->NOrder;i++ )
+	{
+		int k=2*i+1-this->NOrder;
+		Float32 a=-sinh(v0)*cos(k*M_PI/(2*this->NOrder));
+		Float32 b= cosh(v0)*sin(k*M_PI/(2*this->NOrder));
+		PolesPtr[i]=Complex( a, b );
+		ZerosPtr[i]=infinity;
+	}
+	
+	w=0;
+	gain=(this->NOrder&1)?1:pow( 10, -this->passRippleDb/20.0 );
+	
+	
+	
+	
+	
 }

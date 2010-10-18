@@ -30,16 +30,13 @@
 
 
 
-void ChebyShev1HighPass::Setup( Float32 cutoffFreq, Float32 rippleDb )
-{
-	Chebyshev1Filter::Setup( cutoffFreq, rippleDb );
-	// move peak of ripple down to 0dB
-	if( !(NPoles&1) )
-		CascadeStages::Normalize( pow( 10, -rippleDb/20.0 ) );
-}
+void    ChebyShev1HighPass::SetupAs( Float32 cutoffFreq, Float32 rippleDb ){
 
 
-Float32 ChebyShev1HighPass::PassbandHint( void )
-{
-	return M_PI;
+	this->cutoffFreq=cutoffFreq;
+	this->passRippleDb=rippleDb;
+	Setup();
+
+
 }
+

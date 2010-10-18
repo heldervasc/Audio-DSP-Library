@@ -31,19 +31,22 @@
 
 // Low Pass Butterworth filter
 // Stable up to 53 poles (frequency min=0.13% of Nyquist)
+
+
 #include "ButterWorthFilter.h"
 
 class ButterLowPass : public ButterWorthFilter
 {
 public:
 	
-	ButterLowPass(UInt32 NPoles,UInt32 NChannels):ButterWorthFilter(NPoles,NChannels){ }
-	ButterLowPass():ButterWorthFilter(int (4+1/2),2){}
+	ButterLowPass(UInt32 Order,UInt32 NChannels):ButterWorthFilter(Order,NChannels){
+		
+		ttype=LOWPASSTRANSF;
+	}
 	
-	Complex GetZero            ( int i );
+	void SetupAs( Float32 NormCutoffFreq );
 	
-protected:
-	Float32    PassbandHint    ( void );
+	
 };
 
 //--------------------------------------------------------------------------

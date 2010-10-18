@@ -46,7 +46,8 @@ PoleFilter::PoleFilter(UInt32 Order,UInt32 Nchan):CascadeFilter(UInt32((Order+1)
 
 	this->NOrder=Order;
 	this->NChannels=Nchan;
-
+	SetPoles(Order);	
+	SetZeros(Order);
 	int len=(Nchan*((Order+1)/2));
 	m_hist=malloc(len*sizeof(Complex));
 	memset(m_hist,0,len);
@@ -65,14 +66,21 @@ int  PoleFilter::CountPoles( void ){
 // Return the number of available zeros.
 int PoleFilter::CountZeros( void ){
 
-
+	
 	return this->Nzeros;
 
 }
 
 // Set the number of available poles up to max.
 void PoleFilter::SetPoles( int n ){
-
+	
+	
+	if(PolesPtr){
+		
+		free(PolesPtr);
+	}
+	PolesPtr=malloc(n*sizeof(Complex));
+	memset(PolesPtr, 0, n*sizeof(Complex));
 	this->NPoles=n;
 
 
@@ -80,7 +88,13 @@ void PoleFilter::SetPoles( int n ){
 
 // Set the number of available zeros up to max.
 void PoleFilter::SetZeros( int n ){
-
+	
+	if(ZerosPtr){
+		
+		free(ZerosPtr);
+	}
+	ZerosPtr=malloc(n*sizeof(Complex));
+	memset(ZerosPtr, 0, n*sizeof(Complex));
 
 	this->Nzeros=n;
 
@@ -266,7 +280,7 @@ void PoleFilter::GetNormalization(Float32 &w,Float32 &gain){
 
 
 /*Transformations */
-const Complex infinity(std::numeric_limits<Float32>::infinity());
+
 
 void PoleFilter::LowPassTransf(void){
 
@@ -401,9 +415,11 @@ void PoleFilter::BandPassTransf(void){
 	Complex *temp=malloc(n*sizeof(Complex));
 	memcpy(temp,PolesPtr,n*sizeof(Complex));
 	
-	free(PolesPtr);
-	NPoles=2*n;
-	PolesPtr=malloc(2*n*sizeof(Complex));
+	//free(PolesPtr);
+	//NPoles=2*n;
+	//PolesPtr=malloc(2*n*sizeof(Complex));
+	
+	SetPoles(2*n);
 	
 	for( int i=0;i<n;i++ )
 	{
@@ -429,9 +445,11 @@ void PoleFilter::BandPassTransf(void){
 	Complex *temp2=malloc(n*sizeof(Complex));
 	memcpy(temp2,ZerosPtr,n*sizeof(Complex));
 	
-	free(ZerosPtr);
-	Nzeros=2*n;
-	ZerosPtr=malloc(2*n*sizeof(Complex));
+	SetZeros(2*n);
+	
+//	free(ZerosPtr);
+//	Nzeros=2*n;
+//	ZerosPtr=malloc(2*n*sizeof(Complex));
 	
 	for( int i=0;i<n;i++ )
 	{
@@ -527,10 +545,8 @@ void PoleFilter::BandStopTransf(void){
 	
 	Complex *temp=malloc(n*sizeof(Complex));
 	memcpy(temp,PolesPtr,n*sizeof(Complex));
-	
-	free(PolesPtr);
-	NPoles=2*n;
-	PolesPtr=malloc(2*n*sizeof(Complex));
+		
+	SetPoles(2*n);
 	
 	for( int i=0;i<n;i++ )
 	{
@@ -557,9 +573,7 @@ void PoleFilter::BandStopTransf(void){
 	Complex *temp2=malloc(n*sizeof(Complex));
 	memcpy(temp,ZerosPtr,n*sizeof(Complex));
 	
-	free(ZerosPtr);
-	Nzeros=2*n;
-	ZerosPtr=malloc(2*n*sizeof(Complex));
+	SetZeros(2*n);
 	
 	for( int i=0;i<n;i++ )
 	{
@@ -618,4 +632,29 @@ Complex PoleFilter::BandStopTransformPoles(int i,Complex c){
 	
 }
 
+
+void PoleFilter::Setup(){
+
+
+	Design();
+	switch (ttype) {
+		case LOWPASSTRANSF:
+			LowPassTransf();
+			break;
+		case HIGHPASSTRANSF:
+			HighPassTransf();
+			break;
+		case BANDPASSTRANSF:
+			BandPassTransf();
+			break;
+		case BANDSTOPTRANSF:
+			BandStopTransf();
+			break;
+		default:
+			break;
+	}
+	Realize(this);
+
+
+}
 

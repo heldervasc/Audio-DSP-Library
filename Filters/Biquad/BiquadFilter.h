@@ -29,7 +29,7 @@
 #ifndef BIQUADFILTER_H
 #define BIQUADFILTER_H
 
-#include "CascadeStages.h"
+#include "CascadeFilter.h"
 #include "Utils.h"
 
 /****************************************************************************
@@ -102,8 +102,8 @@ class BiquadFilter : public CascadeFilter
 	
 public:
  	
-	BiquadFilter(UInt32 Nchan):CascadeStages(1,Nchan){}
-	BiquadFilter():CascadeStages(1,2){}
+	BiquadFilter(UInt32 Nchan):CascadeFilter(1,Nchan){}
+	BiquadFilter():CascadeFilter(1,2){}
 
 
 	

@@ -36,33 +36,17 @@ class Chebyshev1BandPass : public Chebyshev1Filter
 {
 public:
 	
-	Chebyshev1BandPass(UInt32 NPairs,UInt32 NChannels):Chebyshev1Filter(NPairs*2,NChannels){ 
+	Chebyshev1BandPass(UInt32 Order,UInt32 NChannels):Chebyshev1Filter(2*Order,NChannels){ 
 		
-		this->NPairs=NPairs;
-		m_sgn=1;
-        m_hint=hintBrent;
-	
+		ttype=BANDPASSTRANSF;
 	}
-	Chebyshev1BandPass():Chebyshev1Filter(4,2){
 		
-		this->NPairs=2;
-		m_sgn=1;
-        m_hint=hintBrent;
-	}
+	void    SetupAs( Float32 centerFreq, Float32 normWidth, Float32 rippleDb );
 	
 	
-	void    Setup            ( Float32 centerFreq, Float32 normWidth, Float32 rippleDb );
-	
-	int        CountPoles        ( void );
-	int        CountZeroes        ( void );
-	Complex    GetPole            ( int i );
-	Complex    GetZero            ( int i );
 	
 protected:
-	void    BrentHint        ( Float32 *w0, Float32 *w1 );
-	//CalcT    PassbandHint    ( void );
 	
-	UInt32 NPairs;
 };
 
 

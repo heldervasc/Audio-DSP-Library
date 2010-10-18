@@ -32,7 +32,22 @@
 #include "CascadeFilter.h"
 
 #include <float.h>
+#include <limits>
+using namespace std;
 
+
+enum Transformtype{
+
+	LOWPASSTRANSF=0,
+	HIGHPASSTRANSF=1,
+	BANDPASSTRANSF=2,
+	BANDSTOPTRANSF=3,
+
+};
+
+typedef Transformtype TransformType;
+
+const Complex infinity(std::numeric_limits<Float32>::infinity());
 
 class PoleFilter : public CascadeFilter
 {
@@ -90,6 +105,8 @@ public:
 	
 	virtual void Design()=0;
 	
+	void Setup();
+	
 	
 	
 protected:
@@ -138,6 +155,8 @@ protected:
 	 Float32 rollOff;			// for elliptics
 	 
 	 
+	TransformType ttype;
+	
 	
 	
 	

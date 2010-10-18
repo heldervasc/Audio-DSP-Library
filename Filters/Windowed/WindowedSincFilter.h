@@ -62,7 +62,7 @@
 #ifndef WINDOWEDSFIR_H
 #define WINDOWEDSFIR_H
 
-#include "CascadeStages.h"
+#include "CascadeFilter.h"
 #include "Utils.h"
 #include "Window.h"
 #include "HammingWindow.h"

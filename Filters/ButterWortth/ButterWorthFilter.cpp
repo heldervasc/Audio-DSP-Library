@@ -32,37 +32,22 @@
 #include <complex>
 using namespace std;
 
-void ButterWorthFilter::Setup( Float32 cutoffFreq )
-{
-	m_n=this->nPoles;
-	m_wc=2*M_PI*cutoffFreq;
-	Prepare();
-}
+void  ButterWorthFilter::Design( ){
 
 
-int ButterWorthFilter::CountPoles( void )
-{
-	return nPoles;
-}
-
-
-int ButterWorthFilter::CountZeroes( void )
-{
-	return nPoles;
-}
-
-
-Complex ButterWorthFilter::GetPole( int i )
-{
-	return BilinearTransform( GetSPole( i, m_wc ) );
-}
-
-
-Complex ButterWorthFilter::GetSPole( int i, Float32 wc )
-{
 	
-//	Complex temp(,);
-	Complex c(0);
-	c.SetValueFromPolar(tan(wc*0.5),M_PI_2+(2*i+1)*M_PI/(2*m_n));
-	return c;
+//	SetPoles( n );
+//	SetZeros( n );
+	for( int i=0;i<this->NOrder;i++ )
+	{
+		PolesPtr[i].SetValueFromCart(tan(M_PI_2*0.5), M_PI_2+(2*i+1)*M_PI/(2*this->NOrder) );
+		ZerosPtr[i]=infinity;
+	}
+	
+	w=0;
+	gain=1;
+	
+	
+	
+	
 }

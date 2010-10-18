@@ -29,39 +29,15 @@
 #include "Chebyshev1BandStop.h"
 
 
+void  Chebyshev1BandStop::SetupAs( Float32 centerFreq, Float32 normWidth, Float32 rippleDb ){
 
-void Chebyshev1BandStop::Setup( Float32 centerFreq, Float32 normWidth, Float32 rippleDb ){
 
 
-}
-
-int Chebyshev1BandStop::CountPoles( void ){
-
-		return NPairs*2;
-
-}
-int Chebyshev1BandStop::CountZeroes( void ){
-
-		return NPairs*2;
+	this->centerFreq=centerFreq;
+	this->normWidth=normWidth;
+	this->passRippleDb=rippleDb;
+	
+	Setup();
 
 }
 
-Complex Chebyshev1BandStop::GetPole( int i ){
-
-
-
-}
-
-Complex  Chebyshev1BandStop::GetZero( int i ){
-
-
-
-}
-
-
-void Chebyshev1BandStop::BrentHint( Float32 *w0, Float32 *w1 ){
-
-
-
-
-}

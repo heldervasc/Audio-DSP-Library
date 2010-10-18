@@ -28,16 +28,16 @@
 
 #include "ButterWorthLowPass.h"
 
-
-Complex ButterLowPass::GetZero( int i )
-{
-	return Complex( -1 );
-}
+void ButterLowPass::SetupAs( Float32 NormCutoffFreq ){
 
 
-Float32 ButterLowPass::PassbandHint( void )
-{
-	return 0;
+	
+
+	this->cutoffFreq=cutoffFreq;
+	
+	Setup();
+	
+	
 }
 
 

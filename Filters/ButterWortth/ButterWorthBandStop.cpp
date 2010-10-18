@@ -29,45 +29,11 @@
 #include "ButterWorthBandStop.h"
 
 
-void ButterBandStop::Setup( Float32 centerFreq, Float32 normWidth )
-{
-	m_n=NPairs;
-	Float32 angularWidth=2*M_PI*normWidth;
-	m_wc2=2*M_PI*centerFreq-(angularWidth/2);
-	m_wc =m_wc2+angularWidth;
-	Prepare();
+void ButterBandStop::SetupAs(Float32 centerFreq, Float32 normWidth){
+
+	this->centerFreq=centerFreq;
+	this->normWidth=normWidth;
+
+	Setup();
+
 }
-
-
-int ButterBandStop::CountPoles( void )
-{
-	return NPairs*2;
-}
-
-
-int ButterBandStop::CountZeroes( void )
-{
-	return NPairs*2;
-}
-
-
-Complex ButterBandStop::GetPole( int i )
-{
-	return GetBandStopPole( i );
-}
-
-
-Complex ButterBandStop::GetZero( int i )
-{
-	return GetBandStopZero( i );
-}
-
-
-Float32 ButterBandStop::PassbandHint( void )
-{
-	if( (m_wc+m_wc2)/2<M_PI_2 )
-		return M_PI;
-	else
-		return 0;
-}
-

@@ -35,23 +35,13 @@ class ButterBandPass : public ButterWorthFilter
 {
 public:
 	
-	ButterBandPass(UInt32 NPairs,UInt32 NChannels):ButterWorthFilter(NPairs*2,NChannels){ this->NPairs=NPairs;}
-	ButterBandPass():ButterWorthFilter(4,2){this->NPairs=2;}
+	ButterBandPass(UInt32 Order,UInt32 NChannels):ButterWorthFilter(Order,NChannels){
+		
+		ttype=BANDPASSTRANSF;
+	}
 	
-	
-	// centerFreq = freq / sampleRate
-	// normWidth  = freqWidth / sampleRate
-	
-	void            Setup            ( Float32 centerFreq, Float32 normWidth );
-	
-	virtual int        CountPoles        ( void );
-	virtual int        CountZeroes        ( void );
-	virtual Complex GetPole            ( int i );
-	virtual Complex GetZero            ( int i );
-	
-protected:
-	Float32    PassbandHint    ( void );
-	UInt32 NPairs;
+	void SetupAs(Float32 centerFreq, Float32 normWidth);
+
 };
 
 

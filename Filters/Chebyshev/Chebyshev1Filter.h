@@ -35,36 +35,15 @@ class Chebyshev1Filter : public PoleFilter
 {
 public:
 	
-	Chebyshev1Filter(UInt32 NPoles,UInt32 NChannels):PoleFilter(int (NPoles+1/2),NChannels){
-		
-		nPoles=UInt32 (NPoles+1/2);
-		m_hint=hintBrent;
-		
-	}
-	Chebyshev1Filter():PoleFilter(int (4+1/2),2){
-		
-		m_hint=hintBrent;
-		nPoles=UInt32(4+1/2);
-		
-	}
+	Chebyshev1Filter(UInt32 Order,UInt32 NChannels):PoleFilter(Order,NChannels){}
 	
-	// cutoffFreq = freq / sampleRate
+	void Design();
 	
-	virtual    void    Setup            ( Float32 cutoffFreq, Float32 rippleDb );
-	
-	virtual int        CountPoles        ( void );
-	virtual int        CountZeroes        ( void );
-	virtual Complex    GetPole            ( int i );
-	virtual Complex    GetZero            ( int i );
-	
+		
 protected:
-	void            SetupCommon        ( Float32 rippleDb );
-	virtual    Complex GetSPole        ( int i, Float32 wc );
 	
-protected:
-	Float32    m_sgn;
-	Float32    m_eps;
-	UInt32 nPoles;
+
+	
 };
 
 

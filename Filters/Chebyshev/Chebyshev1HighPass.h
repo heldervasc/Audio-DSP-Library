@@ -36,26 +36,15 @@
 class ChebyShev1HighPass : public Chebyshev1Filter
 {
 public:
-	ChebyShev1HighPass(UInt32 NPoles,UInt32 NChannels):Chebyshev1Filter(NPoles,NChannels){
+	ChebyShev1HighPass(UInt32 Order,UInt32 NChannels):Chebyshev1Filter(Order,NChannels){
 		
-		m_sgn=-1;
-        m_hint=hintPassband;
-		this->NPoles=NPoles;
-		
-	}
-	ChebyShev1HighPass():Chebyshev1Filter(4,2){
-		
-		m_sgn=-1;
-		m_hint=hintPassband;
-		this->NPoles=4;
-		
+		ttype=HIGHPASSTRANSF;
 	}
 	
-	void    Setup            ( Float32 cutoffFreq, Float32 rippleDb );
+	void    SetupAs( Float32 cutoffFreq, Float32 rippleDb );
 	
 protected:
-	Float32    PassbandHint    ( void );
-	UInt32 NPoles;
+
 };
 
 

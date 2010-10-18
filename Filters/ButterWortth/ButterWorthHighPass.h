@@ -34,16 +34,15 @@
 
 class ButterHighPass : public ButterWorthFilter
 {
-public:
+
 	
+	ButterHighPass(UInt32 Order,UInt32 NChannels):ButterWorthFilter(Order,NChannels){
+		
+		ttype=HIGHPASSTRANSF;
+	}
 	
-	ButterHighPass(UInt32 NPoles,UInt32 NChannels):ButterWorthFilter(NPoles,NChannels){ }
-	ButterHighPass():ButterWorthFilter(int (4+1/2),2){}
+	void SetupAs( Float32 NormCutoffFreq );
 	
-	Complex GetZero( int i );
-	
-protected:
-	Float32    PassbandHint    ( void );
 };
 
 

@@ -29,15 +29,12 @@
 #include "ButterWorthHighPass.h"
 
 
-Complex ButterHighPass::GetZero( int i )
-{
-	return Complex( 1 );
+void ButterHighPass::SetupAs( Float32 NormCutoffFreq ){
+
+
+	
+	this->cutoffFreq=cutoffFreq;
+	
+	Setup();
+
 }
-
-
-Float32 ButterHighPass::PassbandHint( void )
-{
-	return M_PI;
-}
-
-
