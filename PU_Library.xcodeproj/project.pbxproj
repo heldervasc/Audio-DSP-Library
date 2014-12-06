@@ -67,7 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		69008BE1126B8B91005BA6BB /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = "../../../../../Audio-DSP-Library/main.cpp"; sourceTree = "<group>"; };
+		69008BE1126B8B91005BA6BB /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		69008BE4126B8C34005BA6BB /* Brent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Brent.cpp; sourceTree = "<group>"; };
 		69008BE5126B8C34005BA6BB /* Brent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brent.h; sourceTree = "<group>"; };
 		690222E0125BAD2600F1C13C /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -188,8 +188,7 @@
 				690E7C1E12677B3C006604D4 /* Filters */,
 			);
 			name = "Audio-DSP-Library";
-			path = "/Users/heldervasconcelos/Desktop/Audio-DSP-Library";
-			sourceTree = "<absolute>";
+			sourceTree = SOURCE_ROOT;
 		};
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
 			isa = PBXGroup;
@@ -389,7 +388,6 @@
 			};
 			buildConfigurationList = 1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "PU_Library" */;
 			compatibilityVersion = "Xcode 3.1";
-			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
